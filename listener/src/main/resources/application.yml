@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: listener
+  rabbitmq:
+    addresses: localhost:5672,localhost:5673,localhost:5674
+    username: guest
+    password: guest
+    connection-timeout: 3000ms
+    listener:
+      simple:
+        retry:
+          enabled: true
+          initial-interval: 1000ms
+          max-attempts: 5
+
+server:
+  port: 8082
+
+rabbitmq:
+  exchange:
+    name: ha.direct.exchange
+  queue:
+    name: ha.mirrored.queue
+  routing:
+    key: ha.routing.key
